@@ -1,0 +1,38 @@
+{
+  "name": "restapi",
+  "version": "1.0.0",
+  "description": "ResFUL API for Elaniin Backend Developer test",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node /index.js",
+    "devStart": "nodemon /index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wmoralesdev/restApi.git"
+  },
+  "keywords": [
+    "test",
+    "elaniin",
+    "api",
+    "rest"
+  ],
+  "author": "Walter Morales",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/wmoralesdev/restApi/issues"
+  },
+  "homepage": "https://github.com/wmoralesdev/restApi#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.5"
+  },
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "joi": "^17.2.1",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.10.9",
+    "morgan": "^1.10.0"
+  }
+}
