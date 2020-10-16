@@ -2,7 +2,7 @@ const express = require('express')
 const router = express.Router()
 
 const verify = require('./VerifyToken')
-const UserController = require('../Controllers/UserController')
+const UserController = require('../Controllers/User/UserController')
 
 router.get('/current', verify, UserController.getCurrent)
 router.get('/', UserController.getAll)

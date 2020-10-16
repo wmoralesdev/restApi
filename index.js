@@ -1,5 +1,6 @@
 require('dotenv').config()
 
+const cors = require('cors')
 const http = require('http')
 const logger = require('morgan')
 const express = require('express')
@@ -7,9 +8,11 @@ const mongoose = require('mongoose')
 
 const app = express()
 const port = process.env.PORT || '3000'
-app.set('port', port)
-app.use(express.json());
 
+app.set('port', port)
+
+app.use(cors())
+app.use(express.json())
 app.use(logger(':method :url :status :res[content-length] - :response-time ms'))
 
 var server = http.createServer(app)
@@ -56,6 +59,8 @@ mongoose.connect(process.env.MONGO_URI, {
         debug(err);
         process.exit(1);
     });
+
 // Routes
-var UserRoutes = require('./Routes/UserRoutes')
+var UserRoutes = require('./Routes/UserRoutes'), ProductRoutes = require('./Routes/ProductRoutes')
 app.use('/user', UserRoutes)
+app.use('/product', ProductRoutes)

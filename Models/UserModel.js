@@ -21,7 +21,8 @@ var UserSchema = mongoose.Schema({
     password: {
         type: String,
         required: true
-    }
+    },
+    recoverLink: String
 })
 
 module.exports = mongoose.model("User", UserSchema)

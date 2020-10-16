@@ -1,7 +1,7 @@
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 
-const User = require('../Models/UserModel')
+const User = require('../../Models/UserModel')
 const { registerValidation, loginValidation, updateValidation, resetPasswordValidation } = require('./Validator')
 
 var UserController = {
