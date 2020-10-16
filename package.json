@@ -6,6 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node /index.js",
+    "seed": "node Dev/seed.js",
     "devStart": "nodemon /index.js"
   },
   "repository": {
@@ -25,9 +26,12 @@
   },
   "homepage": "https://github.com/wmoralesdev/restApi#readme",
   "devDependencies": {
+    "faker": "^5.1.0",
+    "mongo-seeding": "^3.4.1",
     "nodemon": "^2.0.5"
   },
   "dependencies": {
+    "@sendgrid/mail": "^7.3.0",
     "bcrypt": "^5.0.0",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",

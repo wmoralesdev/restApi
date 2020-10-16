@@ -1,6 +1,7 @@
 require('dotenv').config()
 
 const http = require('http')
+const logger = require('morgan')
 const express = require('express')
 const mongoose = require('mongoose')
 
@@ -9,6 +10,7 @@ const port = process.env.PORT || '3000'
 app.set('port', port)
 app.use(express.json());
 
+app.use(logger(':method :url :status :res[content-length] - :response-time ms'))
 
 var server = http.createServer(app)
 server.listen(port)
@@ -45,6 +47,7 @@ mongoose.connect(process.env.MONGO_URI, {
     useCreateIndex: true,
     useNewUrlParser: true,
     useUnifiedTopology: true,
+    useFindAndModify: false
 })
     .then(() => {
         console.log("Connected to DB");
