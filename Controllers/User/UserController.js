@@ -94,7 +94,6 @@ var UserController = {
             return res.status(200).json(actualUser)
         }
         catch (err) {
-            console.log(err);
             return res.status(400).json(err.details ? err.details[0].message : err)
         }
     },
@@ -177,7 +176,6 @@ var UserController = {
             }
         }
         catch(err) {
-            console.log(err);
             return res.status(500).json({error: true, message: "Something went wrong"})
         }
     }

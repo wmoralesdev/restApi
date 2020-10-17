@@ -59,6 +59,7 @@ var seedDatabase = async () => {
 
 var dropCurrentDb = async () => {
     await User.collection.drop()
+    await Product.collection.drop()
 }
 
 function getRandomArbitrary(min, max) {
