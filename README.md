@@ -21,7 +21,7 @@ Rest API created in NodeJS with express web framework.
 
 Implements a MongoDB database with **mongoose** ORM for every schema and collection. Authetication is made through JWT, and has a connection to a AWS S3 bucket storage.
 
-Hosted in heroku at https://rest-api-elaniin.herokuapp.com/
+Deployed in heroku at https://rest-api-elaniin.herokuapp.com/
 
 ---
 ## Instalation
