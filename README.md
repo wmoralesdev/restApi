@@ -133,7 +133,7 @@ Rest API functionality is based in *Users and products*. Everything is handled t
 
 ---
 ## Endpoints
-Endpoints are documented and handled in **Insomnia** client, refer to [Insomnia JSON file]() and import it to client.
+Endpoints are documented and handled in **Insomnia** client, refer to [Insomnia JSON file](https://github.com/wmoralesdev/restApi/blob/master/Dev/Insomnia_2020-10-16.json) and import it to client.
 
 ---
 ## Inquiries
