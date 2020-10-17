@@ -1,6 +1,7 @@
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 
+const mailer = require('../Utilities/SendGridMailer')
 const User = require('../../Models/UserModel')
 const { registerValidation, loginValidation, updateValidation, resetPasswordValidation } = require('./Validator')
 
@@ -126,16 +127,58 @@ var UserController = {
 
     resetPassword: async (req, res) => {
         try {
-            await resetPasswordValidation(req.body.email)
+            await resetPasswordValidation(req.body)
             var user = await User.findOne({email: req.body.email})
 
             if(!user)
                 return res.status(404).json({error: true, message: "Email not found"})
 
             const token = jwt.sign({_id: user._id}, process.env.TOKEN_RESET_KEY, {expiresIn: '15m'})
+            const recoverEmail = {
+                to: req.body.email,
+                from: process.env.MAIL,
+                subject: 'RestApi: Recover your password',
+                html: 
+                `
+                    <h1> Greetings ${user.name}! </h1>
+                    <p> To recover your password please enter in the following link: 
+                    ${process.env.CLIENT_URL}/auth/${token}</p>
+                `
+            }
+            
+            await User.findOneAndUpdate({_id: user._id}, {recoverLink: token})
+            await mailer(recoverEmail)
+            return res.header('Authorize', token).status(200).json({error: false, message: "Email sent"})
         }
         catch(err) {
+            return res.status(500).json(err)
+        }
+    },
 
+    resetPasswordHandler: async (req, res) => {
+        try {
+            const token = req.header('Authorize')
+            
+            if(token) {
+                const verified = jwt.verify(token, process.env.TOKEN_RESET_KEY)
+
+                if(verified) {
+                    var user = await User.findOne({recoverLink: token})
+
+                    user.password = await bcrypt.hash(req.body.newPassword, 10)
+                    user.resetLink = ''
+                    
+                    await User.findOneAndUpdate({_id: user._id}, {password: user.password, recoverLink: ''})
+                    return res.status(200).json({error: false, message: 'Updated'})
+                }
+            }
+            else {
+                return res.status(401).json({error: false, message: 'Access denied'})
+            }
+        }
+        catch(err) {
+            console.log(err);
+            return res.status(500).json({error: true, message: "Something went wrong"})
         }
     }
 }

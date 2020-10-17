@@ -12,6 +12,8 @@ router.post('/reg', UserController.register)
 
 router.delete('/delete', verify, UserController.deleteUser)
 
+router.put('/request-recover', UserController.resetPassword)
+router.put('/request-handle', UserController.resetPasswordHandler)
 router.put('/update', verify, UserController.updateUser)
 
 module.exports = router

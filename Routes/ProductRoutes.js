@@ -5,6 +5,7 @@ const { upload } = require('../Controllers/Utilities/ImageUploader')
 const ProductController = require('../Controllers/Product/ProductController')
 
 router.get('/search', ProductController.search)
+router.get('/', ProductController.getAll)
 
 router.post('/', upload.single('product'), ProductController.create)
 

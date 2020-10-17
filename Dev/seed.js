@@ -6,6 +6,7 @@ const bcrypt = require('bcrypt')
 const mongoose = require('mongoose')
 
 const User = require('../Models/UserModel')
+const Product = require('../Models/ProductModel')
 
 var seedDatabase = async () => {
     try {
@@ -24,10 +25,20 @@ var seedDatabase = async () => {
                 password: hashedPassword
             })
 
+            var product = new Product({
+                SKU: faker.random.alpha(32),
+                name: faker.commerce.productName(),
+                quantity: getRandomArbitrary(1, 999),
+                price: getRandomArbitrary(50, 1000),
+                desc: faker.commerce.productDescription()
+            })
+
             await user.save()
+            await product.save()
             user.password = unhashedPassword
 
             jsonStorage.users.push(user)
+            jsonStorage.products.push(product)
         }
 
         fs.writeFileSync('Dummy/Users.json', JSON.stringify(jsonStorage.users), err => {
@@ -42,11 +53,16 @@ var seedDatabase = async () => {
         console.log(err);
     }
 
+    console.log('Seeded');
     process.exit(0)
 }
 
 var dropCurrentDb = async () => {
     await User.collection.drop()
+}
+
+function getRandomArbitrary(min, max) {
+    return Math.floor(Math.random() * (max - min)) + min;
 }
 
 mongoose.connect(process.env.MONGO_URI, {
