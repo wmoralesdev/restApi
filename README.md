@@ -47,7 +47,7 @@ The seeding process execution consists of a faker (npm module) instance creating
 
 If an error is detected, the process ends without seeding the database, the script must be runned again.
 
-*Note: when users creation is made, passwords are hash stored, so to have a reference for unhashed passwords a Dummy folder is created with JSONs for products and users.*
+*Note: when users creation is made, passwords are hash stored, so to have a reference for unhashed passwords a Dummy folder is created with JSONs for products and users. Migrations are realized by **mongoose** when a change in Schemas are detected.*
 
 ---
 ## Environment
