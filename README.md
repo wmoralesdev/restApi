@@ -3,7 +3,7 @@
 ## Summary
 [Description](#Description)
 
-[Instalation](#Instalation)
+[Installation](#Installation)
 
 [Database seeding](#Seeding-database)
 
@@ -24,7 +24,7 @@ Implements a MongoDB database with **mongoose** ORM for every schema and collect
 Deployed in heroku at https://rest-api-elaniin.herokuapp.com/
 
 ---
-## Instalation
+## Installation
 0. Read [dependencies](#Dependencies) section.
 1. Clone repository.
 2. In root, to install every dependency run `npm install`
